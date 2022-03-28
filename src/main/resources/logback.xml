@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<configuration scan="true" scanPeriod="10 seconds" debug="false">
+
+  <!-- 콘솔에서 logback 관련 상태 정보 완전제거 -->
+  <statusListener class="ch.qos.logback.core.status.NopStatusListener"/>
+
+  <!-- 공통 셋팅값 정의-->
+  <property name="LOG_DIR" value="./log"/>
+  <property name="LOG_PATTERN" value="[%d{yyyy/MM/dd HH:mm:ss.SSS}] [%thread] [%-5level] [%logger{36}] - %m%n"/>
+  <property name="LOG_FILE_SIZE" value="100MB"/> <!-- 파일당 최고 용량 (KB, MB, GB) -->
+  <property name="LOG_FILE_MAX_HISTORY" value="30"/> <!-- 일자별 로그파일 최대 보관주기(~일), 해당 설정일 이상된 파일은 자동으로 제거 -->
+
+
+  <!-- *************************************************************************************************** -->
+  <!-- Console Appender -->
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <pattern>${LOG_PATTERN}</pattern>
+    </encoder>
+  </appender>
+  <!-- *************************************************************************************************** -->
+  <!-- ROOT -->
+  <root level="info">
+    <appender-ref ref="STDOUT" />
+  </root>
+  <!-- *************************************************************************************************** -->
+
+</configuration>
